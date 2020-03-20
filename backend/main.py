@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "<h1>Comment</h1>"
+    return flask.render_template("index.html", token="Using React + Flask + SQLalchemy")
 
 if __name__ == "__main__":
   app.run(debug=True)
