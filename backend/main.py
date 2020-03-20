@@ -1,5 +1,5 @@
 import flask
-app = flask.Flask(__main__)
+app = flask.Flask(__name__)
 
 @app.route("/")
 def index():
