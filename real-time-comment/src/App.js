@@ -18,6 +18,28 @@ class App extends Component {
     this.addCommentHandler = this.addCommentHandler.bind(this);
   }
 
+    componentDidMount() {
+      // Loading
+      this.setState({
+        loading: true
+      });
+
+      // Get all the comments
+      fetch("http://localhost:3000")
+        .then(res => res.json())
+        .then(res => {
+          this.setState({
+            comments: res,
+            loading: false
+          });
+        })
+        .catch(err => {
+          this.setState({
+            loading: false
+          });
+        });
+    }
+
   addCommentHandler = (comment) => {
     this.setState({
       loading: false,

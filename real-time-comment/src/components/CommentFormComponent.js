@@ -47,8 +47,8 @@ class CommentFormComponent extends Component {
 
     // Persist the comments on server
     let { comment } = this.state;
-    fetch("http://localhost:3000/", {
-      method: "post",
+    fetch("http://localhost:3000", {
+      method: "POST",
       body: JSON.stringify(comment)
     })
       .then(res => res.json())
@@ -90,7 +90,7 @@ class CommentFormComponent extends Component {
   render() {
     return (
       <React.Fragment>
-        <form method="post" onSubmit={this.onSubmit}>
+        <form method="POST" onSubmit={this.onSubmit}>
           <div className="form-group">
             <input
               className="form-control"
