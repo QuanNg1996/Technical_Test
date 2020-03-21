@@ -13,14 +13,14 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL(app)
 
 
-@app.route("/tasks", methods=['GET'])
-def get_all_tasks():
-  cur = mysql.connection.cursor()
-  cur.execute("SELECT * FROM db_tasks.tasks")
-  rv = cur.fetchall()
-  return jsonify(rv)
-
-  # return flask.render_template("index.html", token="")
+@app.route("/", methods=['GET', 'POST'])
+def index():
+  # if request.method == 'POST':
+  #   userDetails = request.form
+  #   name = userDetails['name']
+  #   email = userDetails['email']
+  #   comment = userDetails['comment']
+  return render_template("index.html", token="hello world!")
 
 if __name__ == "__main__":
   app.run(debug=True)
