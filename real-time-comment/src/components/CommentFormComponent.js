@@ -34,7 +34,49 @@ class CommentFormComponent extends Component {
 
   onSubmit = (event) => {
     // Prevent default form submission
+    console.log(event);
     event.preventDefault();
+
+    if (!this.isFormValid()) {
+      this.setState({ error: "All fields are required !" });
+      return;
+    }
+
+    // loading status and clear error
+    this.setState({ error: "", loading: true})
+
+    // Persist the comments on server
+    let { comment } = this.state;
+    fetch("http://localhost:3000", {
+      method: "POST",
+      body: JSON.stringify(comment)
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.error) {
+          this.setState({ loading : false, error: res.error});
+        } else {
+          // Add time return from api and push comment to parent state
+          comment.time = res.time;
+          this.props.addCommentHandler(comment);
+
+          // Clear the message box
+          this.setState({
+            loading: false,
+            comment: {...comment, message: "" }
+          });
+        }
+      })
+      .catch(err => {
+        this.setState({
+          error: "Something went wrong while submitting form.",
+          loading: false
+        });
+      });
+  }
+
+  isFormValid() {
+    return this.state.comment.name !== "" && this.state.comment.email !== "" && this.state.comment.message !== "";
   }
 
   renderError = () => {
@@ -55,7 +97,7 @@ class CommentFormComponent extends Component {
               onChange={this.fieldChangeHandler}
               name="name"
               type="text"
-              placeholder="Enter your Name here"
+              placeholder="Enter your Name"
             />
           </div>
 
@@ -66,7 +108,7 @@ class CommentFormComponent extends Component {
               onChange={this.fieldChangeHandler}
               name="email"
               type="text"
-              placeholder="Enter your Email here"
+              placeholder="Enter your Email"
             />
           </div>
 
@@ -76,7 +118,7 @@ class CommentFormComponent extends Component {
               value={this.state.comment.message}
               onChange={this.fieldChangeHandler}
               name="message"
-              placeholder="Share your thoughts !"
+              placeholder="Type your message"
               rows="5"
             />
           </div>
@@ -85,7 +127,7 @@ class CommentFormComponent extends Component {
 
           <div className="form-group">
             <button disabled={this.state.loading} className="btn btn-primary">
-              Post Comment
+              Submit Comment
             </button>
           </div>
         </form>

@@ -12,7 +12,7 @@ class App extends Component {
 
     this.state = {
       comments: [],
-      loading: false
+      loading: true
     };
 
     this.addCommentHandler = this.addCommentHandler.bind(this);

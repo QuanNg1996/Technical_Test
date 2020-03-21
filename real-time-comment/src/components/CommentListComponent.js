@@ -16,7 +16,7 @@ const CommentListComponent = (props) => {
     ) : null }
 
     {props.comments.map((comment, index) => (
-      // Comment.js
+      // Render the component here
       <CommentComponent key={index} comment={comment} />
     ))}
     </div>
