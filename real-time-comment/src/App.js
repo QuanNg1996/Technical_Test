@@ -12,7 +12,7 @@ class App extends Component {
 
     this.state = {
       comments: [],
-      loading: true
+      loading: false
     };
 
     this.addCommentHandler = this.addCommentHandler.bind(this);
@@ -40,11 +40,11 @@ class App extends Component {
         </header>
 
         <div className="row">
-          <div className="col-4 pt-3 border-right">
+          <div className="col-4 ml-3 pt-3 border-right">
             <h6>Say something here!</h6>
             <CommentFormComponent addCommentHandler={this.addCommentHandler}/>
           </div>
-          <div className="col-8 pt-3 bg-white">
+          <div className="col-7 pt-3 bg-white">
             <CommentListComponent
               loading={this.state.loading}
               comments={this.state.comments}

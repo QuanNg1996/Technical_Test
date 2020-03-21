@@ -34,7 +34,7 @@ class CommentFormComponent extends Component {
 
   onSubmit = (event) => {
     // Prevent default form submission
-    console.log(event);
+    // console.log(event);
     event.preventDefault();
 
     if (!this.isFormValid()) {
@@ -47,8 +47,8 @@ class CommentFormComponent extends Component {
 
     // Persist the comments on server
     let { comment } = this.state;
-    fetch("http://localhost:3000", {
-      method: "POST",
+    fetch("http://localhost:3000/", {
+      method: "post",
       body: JSON.stringify(comment)
     })
       .then(res => res.json())
@@ -69,12 +69,13 @@ class CommentFormComponent extends Component {
       })
       .catch(err => {
         this.setState({
-          error: "Something went wrong while submitting form.",
+          error: "Something went wrong while submitting the form.",
           loading: false
         });
       });
   }
 
+  // Simple Validation for the FormComponent
   isFormValid() {
     return this.state.comment.name !== "" && this.state.comment.email !== "" && this.state.comment.message !== "";
   }
@@ -89,7 +90,7 @@ class CommentFormComponent extends Component {
   render() {
     return (
       <React.Fragment>
-        <form method="POST" onSubmit={this.onSubmit}>
+        <form method="post" onSubmit={this.onSubmit}>
           <div className="form-group">
             <input
               className="form-control"
