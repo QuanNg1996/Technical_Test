@@ -1,5 +1,5 @@
 import React from 'react';
-import CommentComponent from './CommentComponent'
+import CommentComponent from './CommentComponent';
 
 const CommentListComponent = (props) => {
   return (

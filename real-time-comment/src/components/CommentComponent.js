@@ -14,10 +14,9 @@ const CommentComponent = (props) => {
       />
 
       <div className="media-body p-2 shadow-sm rounded bg-light border">
-        <small className="float-right text-muted"> {time}</small>
-        <h6 className="mt-0 mb-1 text-muted">{name}</h6>
-        <h6 className="mt-0 mb-1 text-muted">{email}</h6>
-        {message}
+        <small className="float-right text-muted">{time}</small>
+        <a href={`mailto:${email}`} className="mt-0 mb-1 text-muted">{name}</a>
+        <p>{message}</p>
       </div>
     </div>
   )

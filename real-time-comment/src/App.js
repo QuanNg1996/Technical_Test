@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import './App.css';
 import CommentListComponent from "./components/CommentListComponent";
 import CommentFormComponent from "./components/CommentFormComponent";
+// import items from './data'; // Test data
 
 
 class App extends Component {
@@ -14,7 +15,7 @@ class App extends Component {
       comments: [],
       loading: false
     };
-
+    // console.log(items);
     this.addCommentHandler = this.addCommentHandler.bind(this);
   }
 
