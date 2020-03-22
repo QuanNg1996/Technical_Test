@@ -25,20 +25,23 @@ class App extends Component {
         loading: true
       });
 
-      // Get all the comments
-      fetch("http://localhost:5000")
-        .then(res => res.json())
-        .then(res => {
-          this.setState({
-            comments: res,
-            loading: false
-          });
-        })
-        .catch(err => {
-          this.setState({
-            loading: false
-          });
+    // Get all the comments
+    fetch("http://localhost:5000/")
+      .then(res => {
+        console.log(res);
+        return res.json();
+      })
+      .then(res => {
+        this.setState({
+          comments: res,
+          loading: false
         });
+      })
+      .catch(err => {
+        this.setState({
+          loading: false
+        });
+      });
     }
 
   addCommentHandler = (comment) => {

@@ -1,9 +1,12 @@
 from flask import Flask, render_template, request, redirect
 from flask_mysqldb import MySQL
 from datetime import date
+from flask_cors import CORS
 import yaml
 
 app = Flask(__name__)
+
+CORS(app)
 
 # Configure db
 db = yaml.load(open('database.yaml'))
@@ -28,15 +31,15 @@ def index():
     mysql.connection.commit()
     cur.close()
     return redirect('/')
-  return render_template('index.html', token=userDetails)
+  return render_template('index.html')
 
-# @app.route('/users')
-# def users():
-#   cur = mysql.connection.cursor()
-#   resultValue = cur.execute("SELECT * FROM users")
-#   if resultValue > 0:
-#     userDetails = cur.fetchall()
-#     return render_template('users.html', userDetails=userDetails)
+def users():
+  cur = mysql.connection.cursor()
+  resultValue = cur.execute("SELECT * FROM users")
+  if resultValue > 0:
+    userDetails = cur.fetchall()
+    return render_template('index.html', token=userDetails)
+
 
 if __name__ == '__main__':
   app.run()
