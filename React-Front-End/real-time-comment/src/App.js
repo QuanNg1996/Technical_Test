@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import './App.css';
 import CommentListComponent from "./components/CommentListComponent";
 import CommentFormComponent from "./components/CommentFormComponent";
-// import items from './data'; // Test data
+import items from './data'; // Test data
 
 
 class App extends Component {
@@ -12,8 +12,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      comments: [],
-      loading: false
+      comments: [...items],
+      loading: true
     };
     // console.log(items);
     this.addCommentHandler = this.addCommentHandler.bind(this);
@@ -26,7 +26,7 @@ class App extends Component {
       });
 
     // Get all the comments
-    fetch("http://localhost:5000/")
+    fetch("http://localhost:5000")
       .then(res => {
         console.log(res);
         return res.json();
