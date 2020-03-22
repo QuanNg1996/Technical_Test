@@ -1,0 +1,5 @@
+# Files ignored for the back-end
+
+flask/
+real_flask_app/database.yaml
+.DS_Store

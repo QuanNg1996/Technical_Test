@@ -47,7 +47,7 @@ class CommentFormComponent extends Component {
 
     // Persist the comments on server
     let { comment } = this.state;
-    fetch("http://localhost:3000", {
+    fetch("http://localhost:5000", {
       method: "POST",
       body: JSON.stringify(comment)
     })
