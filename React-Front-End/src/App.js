@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './images/logo.png';
 import "bootstrap/dist/css/bootstrap.css";
 import './App.css';
 import CommentListComponent from "./components/CommentListComponent";
