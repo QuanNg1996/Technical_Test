@@ -1,11 +1,10 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, jsonify
 from flask_mysqldb import MySQL
 from datetime import date
 from flask_cors import CORS
 import yaml
 
 app = Flask(__name__)
-
 CORS(app)
 
 # Configure db
@@ -20,7 +19,6 @@ mysql = MySQL(app)
 @app.route('/', methods=['GET', 'POST'])
 def index():
   if request.method == 'POST':
-    # Fetch form data
     userDetails = request.form
     name, email, message = userDetails['name'], userDetails['email'], userDetails['message']
     today = date.today()
@@ -30,15 +28,22 @@ def index():
     mysql.connection.commit()
     cur.close()
     return redirect('/')
+  elif request.method == 'GET':
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM users")
+    mysql.connection.commit()
+    data = []
+    for id, name, email, message, time in cur.fetchall():
+      info = dict()
+      info['id'] = id
+      info['name'] = name
+      info['email'] = email
+      info['message'] = message
+      info['time'] = time
+      data.append(info)
+    return jsonify(data)
   return render_template('index.html')
-
-def users():
-  cur = mysql.connection.cursor()
-  resultValue = cur.execute("SELECT * FROM users")
-  if resultValue > 0:
-    userDetails = cur.fetchall()
-    return render_template('index.html', token=userDetails)
-
 
 if __name__ == '__main__':
   app.run(debug=True)
+

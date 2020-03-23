@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import './App.css';
 import CommentListComponent from "./components/CommentListComponent";
 import CommentFormComponent from "./components/CommentFormComponent";
-import items from './data'; // Test data
 
 
 class App extends Component {
@@ -12,7 +11,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      comments: [...items],
+      comments: [],
       loading: true
     };
     // console.log(items);
