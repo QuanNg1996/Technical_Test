@@ -49,8 +49,7 @@ class CommentFormComponent extends Component {
     let { comment } = this.state;
     fetch("http://localhost:5000", {
       method: "POST",
-      mode: 'no-cors',
-      credentials: 'include',
+      headers: { 'Content-type': 'application/json'},
       body: JSON.stringify(comment)
     })
       .then(res => res.json())

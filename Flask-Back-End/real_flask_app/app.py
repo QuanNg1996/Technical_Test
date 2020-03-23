@@ -18,7 +18,7 @@ mysql = MySQL(app)
 @app.route('/', methods=['GET', 'POST'])
 def index():
   if request.method == 'POST':
-    userDetails = request.form
+    userDetails = request.json
     name, email, message = userDetails['name'], userDetails['email'], userDetails['message']
     today = date.today()
     time = today.strftime("%d %B %Y")
@@ -45,4 +45,3 @@ def index():
 
 if __name__ == '__main__':
   app.run(debug=True)
-
