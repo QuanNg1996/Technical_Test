@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 class CommentFormComponent extends Component {
+  // Setting up the initial state
   constructor(props) {
     super(props);
     this.state = {
@@ -82,7 +83,7 @@ class CommentFormComponent extends Component {
   }
 
   renderError = () => {
-    // Error Message function
+    // Error message function
     return this.state.error ? (
       <div className="alert alert-danger">{this.state.error}</div>
     ) : null;
@@ -102,7 +103,6 @@ class CommentFormComponent extends Component {
               placeholder="Enter your Name"
             />
           </div>
-
           <div className="form-group">
             <input
               className="form-control"
@@ -113,7 +113,6 @@ class CommentFormComponent extends Component {
               placeholder="Enter your Email"
             />
           </div>
-
           <div className="form-group">
             <textarea
               className="form-control"
@@ -124,9 +123,7 @@ class CommentFormComponent extends Component {
               rows="5"
             />
           </div>
-
           {this.renderError()}
-
           <div className="form-group">
             <button disabled={this.state.loading} className="btn btn-primary">
               Submit Comment
@@ -137,4 +134,5 @@ class CommentFormComponent extends Component {
     );
   }
 }
+
 export default CommentFormComponent;

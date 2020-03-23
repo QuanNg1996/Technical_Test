@@ -7,6 +7,7 @@ import CommentFormComponent from "./components/CommentFormComponent";
 
 
 class App extends Component {
+  // Setting up the initial state
   constructor(props) {
     super(props);
     this.state = {
@@ -39,6 +40,7 @@ class App extends Component {
     }
 
   addCommentHandler = (comment) => {
+    // Function for the comments
     this.setState({
       loading: false,
       comments: [comment, ...this.state.comments]
@@ -58,7 +60,6 @@ class App extends Component {
             </span>
           </h1>
         </header>
-
         <div className="row">
           <div className="col-4 ml-3 pt-3 border-right">
             <h6>Say something here!</h6>

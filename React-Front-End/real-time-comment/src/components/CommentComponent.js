@@ -2,7 +2,6 @@ import React from 'react';
 
 const CommentComponent = (props) => {
   const { name, email, message, time } = props.comment;
-
   return (
     <div className="media mb-3">
       <img
@@ -12,14 +11,13 @@ const CommentComponent = (props) => {
         src={`https://api.adorable.io/avatars/48/${name.toLowerCase()}@adorable.io.png`}
         alt={name}
       />
-
       <div className="media-body p-2 shadow-sm rounded bg-light border">
         <small className="float-right text-muted">{time}</small>
         <a href={`mailto:${email}`} className="mt-0 mb-1 text-muted">{name}</a>
         <p>{message}</p>
       </div>
     </div>
-  )
+  );
 }
 
 export default CommentComponent;
