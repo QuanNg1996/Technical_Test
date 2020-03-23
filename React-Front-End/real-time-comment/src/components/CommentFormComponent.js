@@ -48,7 +48,7 @@ class CommentFormComponent extends Component {
 
     // Persist the comments on server
     let { comment } = this.state;
-    fetch("http://localhost:5000", {
+    fetch('http://localhost:5000', {
       method: "POST",
       headers: { 'Content-type': 'application/json'},
       body: JSON.stringify(comment)
@@ -65,7 +65,7 @@ class CommentFormComponent extends Component {
           // Clear the message box upon submit
           this.setState({
             loading: false,
-            comment: {...comment, message: "" }
+            comment: {...comment, name: "", email: "", message: "" }
           });
         }
       })

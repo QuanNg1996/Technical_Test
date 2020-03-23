@@ -24,7 +24,7 @@ class App extends Component {
       });
 
     // Get all the comments from the MySQL database
-    fetch("http://localhost:5000")
+    fetch('http://localhost:5000')
       .then(res => res.json())
       .then(res => {
         this.setState({
