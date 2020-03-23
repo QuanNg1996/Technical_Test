@@ -29,7 +29,7 @@ def index():
     return redirect('/')
   else:
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM users")
+    cur.execute("SELECT * FROM users ORDER BY id DESC")
     mysql.connection.commit()
     data = []
     for id, name, email, message, time in cur.fetchall():
