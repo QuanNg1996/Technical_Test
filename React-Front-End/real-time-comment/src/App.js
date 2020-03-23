@@ -9,12 +9,10 @@ import CommentFormComponent from "./components/CommentFormComponent";
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       comments: [],
-      loading: true
+      loading: false
     };
-    // console.log(items);
     this.addCommentHandler = this.addCommentHandler.bind(this);
   }
 
@@ -24,12 +22,9 @@ class App extends Component {
         loading: true
       });
 
-    // Get all the comments
+    // Get all the comments from the MySQL database
     fetch("http://localhost:5000")
-      .then(res => {
-        console.log(res);
-        return res.json();
-      })
+      .then(res => res.json())
       .then(res => {
         this.setState({
           comments: res,

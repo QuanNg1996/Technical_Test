@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class CommentFormComponent extends Component {
   constructor(props) {
@@ -13,21 +13,21 @@ class CommentFormComponent extends Component {
         message: ""
       }
     };
-
     this.fieldChangeHandler = this.fieldChangeHandler.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   };
 
   fieldChangeHandler = (event) => {
-    // Get the value of the name, email and comment to update it
-    const { value, name, email } = event.target;
+    // Get the value of the name, email and message to update it
+    const { value, name, email, message } = event.target;
 
     this.setState({
       ...this.state,
       comment: {
         ...this.state.comment,
         [name]: value,
-        [email]: value
+        [email]: value,
+        [message]: value
       }
     });
   }
@@ -49,6 +49,8 @@ class CommentFormComponent extends Component {
     let { comment } = this.state;
     fetch("http://localhost:5000", {
       method: "POST",
+      mode: 'no-cors',
+      credentials: 'include',
       body: JSON.stringify(comment)
     })
       .then(res => res.json())
@@ -56,11 +58,11 @@ class CommentFormComponent extends Component {
         if (res.error) {
           this.setState({ loading : false, error: res.error});
         } else {
-          // Add time return from api and push comment to parent state
+          // Add time return from the api and push comment to parent state
           comment.time = res.time;
           this.props.addCommentHandler(comment);
 
-          // Clear the message box
+          // Clear the message box upon submit
           this.setState({
             loading: false,
             comment: {...comment, message: "" }
