@@ -13,6 +13,7 @@ WORKDIR /real_flask_app
 
 # Install any needed packages specified in requirements.txt
 COPY requirements.txt /real_flask_app
+COPY db.yaml /real_flask_app
 RUN pip3 install -r requirements.txt
 
 # Run app.py when the container launches
