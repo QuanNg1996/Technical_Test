@@ -30,7 +30,7 @@ services:
     depends_on:
       - "db"
 
-  React-Front-end:
+  react-front-end:
     container_name: react-app
     build:
       context: ./React-Front-End
