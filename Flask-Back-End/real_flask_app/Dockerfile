@@ -18,4 +18,4 @@ RUN pip3 install -r requirements.txt
 
 # Run app.py when the container launches
 COPY app.py /real_flask_app
-CMD python app.py
+CMD python3 app.py
