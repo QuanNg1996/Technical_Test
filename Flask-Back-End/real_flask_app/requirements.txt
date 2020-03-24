@@ -1,6 +1,5 @@
-flask
-flask-cors
-flask-mysqldb
-pyyaml
-mysql-connector
+Flask
+Flask-Cors
+Flask-MySQLDb
+PyYAML
 
