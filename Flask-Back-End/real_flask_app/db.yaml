@@ -1,0 +1,4 @@
+mysql_host: 'localhost' # Host
+mysql_user: 'root' # Database User
+mysql_password: '1234567890' # Database password set
+mysql_db: 'flaskapp' # Name of your database
