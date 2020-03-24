@@ -2,17 +2,21 @@ from flask import Flask, render_template, request, redirect, jsonify
 from flask_mysqldb import MySQL
 from datetime import date
 from flask_cors import CORS
-import yaml
+# import yaml
 
 app = Flask(__name__)
 CORS(app)
 
 # Configure db
-db = yaml.load(open('database.yaml'))
-app.config['MYSQL_HOST'] = db['mysql_host']
-app.config['MYSQL_USER'] = db['mysql_user']
-app.config['MYSQL_PASSWORD'] = db['mysql_password']
-app.config['MYSQL_DB'] = db['mysql_db']
+# db = yaml.load(open('database.yaml'))
+app.config['MYSQL_HOST'] = 'localhost'
+# db['mysql_host']
+app.config['MYSQL_USER'] = 'root'
+# db['mysql_user']
+app.config['MYSQL_PASSWORD'] = '1234567890'
+# db['mysql_password']
+app.config['MYSQL_DB'] = 'flaskapp'
+# db['mysql_db']
 mysql = MySQL(app)
 
 @app.route('/', methods=['GET', 'POST'])
