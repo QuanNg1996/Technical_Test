@@ -1,0 +1,47 @@
+version: '3.5'
+
+services:
+
+  db:
+    image: mysql:5.7
+    container_name: mysql
+    restart: always
+    ports:
+      - '3307:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: flaskapp
+      MYSQL_USER: root
+      MYSQL_PASSWORD: test1234
+    volumes:
+      - ./docker/data/db:/var/lib/mysql
+
+  Flask-Back-End:
+    container_name: flask-app
+    restart: always
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    volumes:
+      - ./real_flask_app:/usr/src/app
+    depends_on:
+      - "db"
+
+  React-Front-end:
+    container_name: react-app
+    build:
+      context: ./React-Front-End
+      dockerfile: Dockerfile
+    volumes:
+      - './React-Front-End:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - '3000:3000'
+    depends_on:
+      - "Flask-Back-End"
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - HOST_URL=http://192.168.99.100:5000
