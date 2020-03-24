@@ -2,3 +2,5 @@ flask
 flask-fors
 flask-mysqldb
 yaml
+mysql-connector
+
