@@ -1,5 +1,5 @@
 flask
-flask-fors
+flask-cors
 flask-mysqldb
 yaml
 mysql-connector
