@@ -10,7 +10,7 @@
     "bootstrap": "^4.4.1",
     "cors": "^2.8.5",
     "jquery": "^3.5.0",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
